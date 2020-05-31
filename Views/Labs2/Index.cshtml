@@ -1,0 +1,39 @@
+﻿@model IEnumerable<zaj9.Models.Lab>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NazwaLab)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.iloscPracownikow)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NazwaLab)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.iloscPracownikow)
+            </td>
+            <td>
+                <a asp-action="Probka" asp-route-id="@item.IDLAB">Lab</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

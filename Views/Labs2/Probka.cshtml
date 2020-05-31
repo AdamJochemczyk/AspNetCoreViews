@@ -1,0 +1,58 @@
+﻿@model IEnumerable<zaj9.Models.Probki>
+
+@{
+    ViewData["Title"] = "Probka";
+}
+
+<h1>Probka</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nazwa_Probki)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ilosc_Pojemnikow)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Waga_Probek)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.zbadane)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kosztbadania)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lab)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nazwa_Probki)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ilosc_Pojemnikow)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Waga_Probek)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.zbadane)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kosztbadania)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lab.NazwaLab)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<a asp-action="Index">Wroć do spisu Lab</a>

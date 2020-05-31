@@ -1,0 +1,30 @@
+﻿@model zaj9.Models.Lab
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Lab</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NazwaLab)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NazwaLab)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.iloscPracownikow)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.iloscPracownikow)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.IDLAB">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

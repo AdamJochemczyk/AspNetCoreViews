@@ -1,0 +1,90 @@
+﻿@model zaj9.ViewModels.LabProbki
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nazwa Lab
+            </th>
+            <th>
+                Ilosc pracownikow
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var lab in Model.Lab)
+        {
+            string stylWiersza = "background:green;";
+            if (lab.IDLAB == Model.IdZaznaczonegoLab) stylWiersza = "background:red;";
+            <tr style="@stylWiersza">
+                <td>
+                    @Html.DisplayFor(modelItem => lab.NazwaLab)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => lab.iloscPracownikow)
+                </td>
+                <td>
+                    @if (lab.IDLAB != Model.IdZaznaczonegoLab)
+                    {
+                        <a asp-action="Index" asp-route-id="@lab.IDLAB">Zaznacz</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.Probki != null && Model.Probki.Count > 0)
+{
+    <h2>Probki w lab</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Nazwa Probki
+                </th>
+                <th>
+                    Ilosc pojemnikow
+                </th>
+                <th>
+                    Zbadane?
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var probka in Model.Probki)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(p => probka.Nazwa_Probki)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(p => probka.Ilosc_Pojemnikow)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(p => probka.zbadane)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<h2>Dane zbiorcze</h2>
+Łączna liczba zestawów badan:  @Model.LiczbaZestawowBadan
+<br />
+Liczba zestawów badan w lab: @(Model.LiczbaZestawowBadanwLab ?? 0)
+<br />
+Najciezszy zestaw probek: @(Model.NajciezszyZestawProbek) 
+<br/>
+Najlzejszy zestaw probek: @(Model.NajlzejszyZestawProbek)
+<br/>
+@if (Model.SredniaWagaProbek != null)
+{
+    @Html.Raw($"Średnia waga probek w lab: {Model.SredniaWagaProbek:F1} <br/>");
+}

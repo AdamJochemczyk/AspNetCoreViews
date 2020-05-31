@@ -1,0 +1,74 @@
+﻿@model IEnumerable<zaj9.Models.Lab>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NazwaLab)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.iloscPracownikow)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var lab in Model) {
+        <tr>
+                <td>
+                @Html.DisplayFor(modelItem => lab.NazwaLab)
+                </td>
+                <td>
+                @Html.DisplayFor(modelItem => lab.iloscPracownikow)
+                </td>
+                <td>
+                    <table>
+                        <thead>
+                        <tr>
+                            <td>
+                                Nazwa
+                            </td>
+                            <td>
+                                Pojemniki
+                            </td>
+                            <td>
+                                Zbadano?
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var probka in lab.Probki)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(m => probka.Nazwa_Probki)
+                                    </td>
+                                    <td>
+                                        @probka.Ilosc_Pojemnikow
+                                    </td>
+                                    <td>
+                                        @probka.zbadane
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@lab.IDLAB">Edit</a> |
+                <a asp-action="Details" asp-route-id="@lab.IDLAB">Details</a> |
+                <a asp-action="Delete" asp-route-id="@lab.IDLAB">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
